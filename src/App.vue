@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import HeaderSii from './components/HeaderSii.vue';
 import Footer from './components/FooterSii.vue';
 import BuscadorNormativo from './components/BuscadorNormativo.vue';
+import ChatWindow from './components/ChatWindow.vue';
 </script>
 
 <template>
@@ -14,6 +15,9 @@ import BuscadorNormativo from './components/BuscadorNormativo.vue';
 
     <BuscadorNormativo />
     <Footer />
+    
+    <!-- Chat Window -->
+    <ChatWindow />
   </div>  
 </template>
 
