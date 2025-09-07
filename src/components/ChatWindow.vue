@@ -9,7 +9,7 @@
     <!-- Ventana del chat -->
     <div class="chat-window">
       <div class="chat-header">
-        <h3>Chat de Soporte</h3>
+        <h3>Chat de Proyectos Normativos del SII</h3>
         <p>¿En qué podemos ayudarte?</p>
       </div>
 
