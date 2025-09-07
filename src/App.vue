@@ -14,12 +14,16 @@ import BuscadorNormativo from './components/BuscadorNormativo.vue';
 
     <BuscadorNormativo />
     <Footer />
-  </div>
-  
-  
+  </div>  
 </template>
 
 <style scoped>
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

@@ -56,15 +56,22 @@ function buscar() {
 
 <style scoped>
 .buscador-normativo {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 .filtros {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+}
+.resultados {
+    flex: 1;
+    min-height: 400px;
 }
 .resultados ul {
     list-style: none;
