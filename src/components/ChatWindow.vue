@@ -149,14 +149,14 @@ onMounted(() => {
   position: absolute;
   right: 0;
   top: 0;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   background: #003366;
   color: white;
   border: none;
   border-radius: 0 50% 50% 0;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,8 +170,8 @@ onMounted(() => {
 }
 
 .chat-window {
-  width: 350px;
-  height: 500px;
+  width: 420px;
+  height: 600px;
   background: white;
   border-radius: 15px 0 0 15px;
   box-shadow: -2px 0 20px rgba(0, 0, 0, 0.15);
@@ -323,14 +323,14 @@ onMounted(() => {
 /* Responsive */
 @media (max-width: 768px) {
   .chat-window {
-    width: 300px;
-    height: 450px;
+    width: 350px;
+    height: 500px;
   }
   
   .chat-toggle {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
   }
 }
 </style>
