@@ -4,6 +4,17 @@ import HeaderSii from './components/HeaderSii.vue';
 import Footer from './components/FooterSii.vue';
 import BuscadorNormativo from './components/BuscadorNormativo.vue';
 import ChatWindow from './components/ChatWindow.vue';
+import { ref } from 'vue'
+
+// Referencia al componente ChatWindow
+const chatWindowRef = ref(null)
+
+// Función para manejar el evento de esconder chat
+const handleHideChat = () => {
+  if (chatWindowRef.value) {
+    chatWindowRef.value.hideChat()
+  }
+}
 </script>
 
 <template>
@@ -13,11 +24,11 @@ import ChatWindow from './components/ChatWindow.vue';
     <HelloWorld msg="Vite + Vue" />
     -->
 
-    <BuscadorNormativo />
+    <BuscadorNormativo @hideChat="handleHideChat" />
     <Footer />
     
     <!-- Chat Window -->
-    <ChatWindow />
+    <ChatWindow ref="chatWindowRef" />
   </div>  
 </template>
 

@@ -1,9 +1,10 @@
 <template>
-  <div class="chat-container" :class="{ 'chat-open': isOpen }">
-    <!-- Botón para abrir/cerrar el chat -->
-    <button class="chat-toggle" @click="toggleChat">
-      <span v-if="!isOpen">💬</span>
-      <span v-else>✕</span>
+  <div class="chat-container" :class="{ 'chat-open': isOpen, 'chat-hidden': isHidden }">
+    <!-- Botón para abrir/cerrar/mostrar el chat - siempre visible -->
+    <button class="chat-toggle" @click="isHidden ? showChat() : toggleChat()">
+      <span v-if="!isOpen && !isHidden">💬</span>
+      <span v-else-if="isOpen && !isHidden">✕</span>
+      <span v-else-if="isHidden">💬</span>
     </button>
 
     <!-- Ventana del chat -->
@@ -49,6 +50,7 @@
 import { ref, nextTick, onMounted } from 'vue'
 
 const isOpen = ref(false)
+const isHidden = ref(false)
 const newMessage = ref('')
 const isTyping = ref(false)
 const messagesContainer = ref(null)
@@ -67,6 +69,20 @@ let messageId = 2
 const toggleChat = () => {
   isOpen.value = !isOpen.value
 }
+
+const hideChat = () => {
+  isHidden.value = true
+  isOpen.value = false
+}
+
+const showChat = () => {
+  isHidden.value = false
+}
+
+// Función para exponer hideChat al componente padre
+defineExpose({
+  hideChat
+})
 
 const sendMessage = async () => {
   if (!newMessage.value.trim()) return
@@ -138,29 +154,25 @@ onMounted(() => {
 <style scoped>
 .chat-container {
   position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 20px;
+  top: 20px;
   z-index: 1000;
   transition: all 0.3s ease;
 }
 
 .chat-toggle {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background: #003366;
   color: white;
   border: none;
-  border-radius: 0 50% 50% 0;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 28px;
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
@@ -169,7 +181,14 @@ onMounted(() => {
   transform: scale(1.05);
 }
 
+.chat-hidden .chat-window {
+  display: none;
+}
+
 .chat-window {
+  position: absolute;
+  top: 80px;
+  right: 0;
   width: 420px;
   height: 600px;
   background: white;
@@ -322,15 +341,21 @@ onMounted(() => {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .chat-container {
+    right: 15px;
+    top: 15px;
+  }
+  
   .chat-window {
     width: 350px;
     height: 500px;
+    top: 70px;
   }
   
   .chat-toggle {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="buscador-normativo">
+    <div class="buscador-normativo" @click="handleBuscadorClick">
         <div class="filtros">
             <input v-model="filtros.titulo" placeholder="Buscar por título..." />
             <select v-model="filtros.tipo">
@@ -52,6 +52,15 @@ function buscar() {
         return coincideTitulo && coincideTipo && coincideFechaDesde && coincideFechaHasta
     })
 }
+
+// Función para manejar clicks en el buscador
+function handleBuscadorClick() {
+    // Emitir evento para esconder el chat
+    emit('hideChat')
+}
+
+// Definir emits
+const emit = defineEmits(['hideChat'])
 </script>
 
 <style scoped>
