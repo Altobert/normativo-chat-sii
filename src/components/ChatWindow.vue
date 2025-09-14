@@ -74,7 +74,7 @@ import { ref, nextTick, onMounted } from 'vue'
 // Configuración de la API
 const API_BASE_URL = 'http://127.0.0.1:8000'
 // Usar la sesión existente que ya tiene el documento PDF subido
-const sessionId = ref('fe38e894-5d52-4e9c-b11f-3edeed4f063d')
+const sessionId = ref('5a18dc11-5a06-435b-8aef-970e9963d9f2')
 
 const isOpen = ref(false)
 const isHidden = ref(false)
