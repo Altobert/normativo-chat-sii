@@ -1,7 +1,7 @@
 // Configuración de la API
 export const API_CONFIG = {
-  // URL base de la API - Actualizada con el puerto correcto
-  BASE_URL: 'http://localhost:8080',
+  // URL base de la API - Usando proxy de Vite para evitar CORS
+  BASE_URL: '', // Vite proxy manejará las rutas /api
   
   // Endpoints de búsqueda
   ENDPOINTS: {
@@ -15,7 +15,7 @@ export const API_CONFIG = {
   TIMEOUT: 10000, // 10 segundos
   
   // Modo de desarrollo (muestra datos de prueba si la API no está disponible)
-  DEVELOPMENT_MODE: true
+  DEVELOPMENT_MODE: false
 }
 
 // Función para construir URLs completas

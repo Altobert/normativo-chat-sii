@@ -11,6 +11,7 @@ La API está configurada y funcionando correctamente en `http://localhost:8080`.
 - **URL Base**: `http://localhost:8080`
 - **Endpoint Principal**: `/api/search/documents`
 - **Parámetros**: `query` (texto de búsqueda), `limit` (límite de resultados)
+- **Nota**: El endpoint `/api/search/stats` no está disponible (403 Forbidden)
 
 ### Estructura de Respuesta de tu API
 
@@ -68,6 +69,8 @@ curl -X GET "http://localhost:8080/api/search/documents?query=tributario&limit=1
 - **Detección de tipo**: Extrae automáticamente el tipo de documento del título
 - **Score de relevancia**: Muestra el score de cada resultado
 - **Información completa**: Título, fecha, año, archivo, snippet
+- **Solo datos reales**: Eliminados todos los datos de prueba
+- **Sin estadísticas**: El endpoint de stats no está disponible en tu API
 
 ## 🔍 Debugging
 

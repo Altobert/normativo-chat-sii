@@ -11,9 +11,16 @@ const chatWindowRef = ref(null)
 
 // Función para manejar el evento de esconder chat
 const handleHideChat = () => {
-  if (chatWindowRef.value) {
-    chatWindowRef.value.hideChat()
-  }
+    if (chatWindowRef.value) {
+        chatWindowRef.value.hideChat()
+    }
+}
+
+// Función para manejar el evento de abrir chat con documento
+const handleAbrirChatConDocumento = (data) => {
+    if (chatWindowRef.value) {
+        chatWindowRef.value.abrirChatConDocumento(data)
+    }
 }
 </script>
 
@@ -24,12 +31,12 @@ const handleHideChat = () => {
     <HelloWorld msg="Vite + Vue" />
     -->
 
-    <BuscadorNormativo @hideChat="handleHideChat" />
+    <BuscadorNormativo @hideChat="handleHideChat" @abrirChatConDocumento="handleAbrirChatConDocumento" />
     <Footer />
     
-    <!-- Chat Window -->
-    <ChatWindow ref="chatWindowRef" />
-  </div>  
+        <!-- Chat Window -->
+        <ChatWindow ref="chatWindowRef" />
+    </div>
 </template>
 
 <style scoped>
