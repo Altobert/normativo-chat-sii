@@ -118,9 +118,13 @@
 import { ref, onMounted, computed } from 'vue'
 import { API_CONFIG, buildApiUrl, checkApiHealth } from '../config/api.js'
 import logger from '../utils/logger.js'
+import { useNotifications } from '../composables/useNotifications.js'
 
 // Configuración de la API
 const API_BASE_URL = API_CONFIG.BASE_URL
+
+// Sistema de notificaciones
+const { success, error, warning, info } = useNotifications()
 
 // Estado del componente
 const filtros = ref({
@@ -315,7 +319,7 @@ async function buscar() {
     })
 
     // Mostrar mensaje de error al usuario
-    alert('Error al buscar documentos. Por favor, verifica que la API esté funcionando e intenta de nuevo.')
+    error('Error al buscar documentos. Por favor, verifica que la API esté funcionando e intenta de nuevo.', 'Error de búsqueda')
 
   } finally {
     isSearching.value = false
@@ -493,7 +497,7 @@ function limpiarFiltros() {
 // Función para buscar solo por año
 async function buscarSoloPorAño() {
   if (!filtros.value.year) {
-    alert('Por favor selecciona un año para buscar')
+    warning('Por favor selecciona un año para buscar', 'Año requerido')
     return
   }
   
@@ -546,7 +550,7 @@ async function buscarPorId(documentId) {
     } catch (error) {
         console.error('❌ Error buscando por ID:', error)
         logger.error('Error buscando documento por ID', { documentId, error: error.message })
-        alert('No se pudo encontrar el documento con ese ID.')
+        error('No se pudo encontrar el documento con ese ID.', 'Documento no encontrado')
     } finally {
         isSearching.value = false
         logger.info('Búsqueda por ID finalizada')
@@ -558,7 +562,7 @@ function verDocumento(documentId) {
     console.log('👁️ Ver documento:', documentId)
     logger.user(`Solicitando ver documento: ${documentId}`)
     // Aquí podrías abrir un modal o navegar a una página de detalle
-    alert(`Ver documento con ID: ${documentId}`)
+    info(`Ver documento con ID: ${documentId}`, 'Ver documento')
 }
 
 // Chatear con documento específico
@@ -580,10 +584,10 @@ async function chatearConDocumento(documento) {
       logger.success(`Chat iniciado con documento: ${documento.title}`)
       
       // Mostrar mensaje de confirmación
-      alert(`Chat abierto con el documento: ${documento.title}`)
+      success(`Chat abierto con el documento: ${documento.title}`, 'Chat iniciado')
     } else {
       logger.error('No se pudo crear sesión para el documento')
-      alert('No se pudo iniciar el chat con este documento. Por favor, intenta de nuevo.')
+      error('No se pudo iniciar el chat con este documento. Por favor, intenta de nuevo.', 'Error al iniciar chat')
     }
 
   } catch (error) {
@@ -591,7 +595,7 @@ async function chatearConDocumento(documento) {
       documento: documento.title,
       error: error.message
     })
-    alert('Error al iniciar el chat con el documento. Por favor, intenta de nuevo.')
+    error('Error al iniciar el chat con el documento. Por favor, intenta de nuevo.', 'Error al iniciar chat')
   }
 }
 

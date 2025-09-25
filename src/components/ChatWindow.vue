@@ -83,9 +83,13 @@
 <script setup>
 import { ref, nextTick, onMounted } from 'vue'
 import logger from '../utils/logger.js'
+import { useNotifications } from '../composables/useNotifications.js'
 
 // Configuración de la API
 const API_BASE_URL = 'http://127.0.0.1:8000'
+
+// Sistema de notificaciones
+const { success, error, warning, info } = useNotifications()
 // Usar la sesión existente que ya tiene el documento PDF subido
 const sessionId = ref('5a18dc11-5a06-435b-8aef-970e9963d9f2')
 
@@ -588,7 +592,7 @@ ${data.documento.summary || 'No hay resumen disponible'}
       documento: data.documento.title,
       error: error.message
     })
-    alert(`Error al abrir el chat con el documento: ${error.message}`)
+    error(`Error al abrir el chat con el documento: ${error.message}`, 'Error al abrir chat')
   }
 }
 
