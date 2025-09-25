@@ -945,7 +945,7 @@ const emit = defineEmits(['hideChat', 'abrirChatConDocumento'])
 
 .btn-chat {
     padding: 0.5rem 1rem;
-    background: #28a745;
+    background: #ff5100;
     color: white;
     border: none;
     border-radius: 4px;
@@ -955,7 +955,7 @@ const emit = defineEmits(['hideChat', 'abrirChatConDocumento'])
 }
 
 .btn-chat:hover {
-    background: #218838;
+    background: #e64700;
 }
 
 .document-list {
