@@ -45,11 +45,11 @@
                 v-model="filtros.fechaHasta" 
                 placeholder="Hasta" 
             />
-                <button @click="buscar" :disabled="isSearching">
+                <button @click.stop="buscar" :disabled="isSearching">
                     <span v-if="!isSearching">🔍 Buscar</span>
                     <span v-else>⏳ Buscando...</span>
                 </button>
-                <button @click="limpiarFiltros" class="btn-clear" :disabled="isSearching">
+                <button @click.stop="limpiarFiltros" class="btn-clear" :disabled="isSearching">
                     🗑️ Limpiar
                 </button>
         </div>
@@ -485,6 +485,7 @@ async function buscarPorYear(year) {
 // Función para limpiar filtros
 function limpiarFiltros() {
   logger.user('Limpiando todos los filtros')
+  
   filtros.value = {
     titulo: '',
     tipo: '',
@@ -492,6 +493,13 @@ function limpiarFiltros() {
     fechaDesde: '',
     fechaHasta: ''
   }
+  
+  // Limpiar resultados y estado de búsqueda
+  resultados.value = []
+  hasSearched.value = false
+  
+  // Mostrar notificación de confirmación
+  info('Filtros limpiados correctamente', 'Filtros limpiados')
 }
 
 // Función para buscar solo por año
