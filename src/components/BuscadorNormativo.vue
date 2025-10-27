@@ -87,7 +87,9 @@
                     <div class="document-header">
                         <h3 class="document-title">{{ doc.title }}</h3>
                         <span class="document-type">{{ doc.type }}</span>
+                        <!--
                         <span v-if="doc.score" class="document-score">Score: {{ doc.score.toFixed(2) }}</span>
+                        -->                        
                     </div>
                     <div class="document-meta">
                         <span class="document-date">{{ formatDate(doc.date) }}</span>
